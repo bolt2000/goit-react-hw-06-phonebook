@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import shortid from 'shortid';
 import { useState } from 'react';
+import { addContact } from 'redux/slice';
+import { useDispatch } from 'react-redux';
+
+
 
 export default function Phonebook({onSubmit}) {
   const [name, setName] = useState(() => {
@@ -12,6 +16,12 @@ export default function Phonebook({onSubmit}) {
   const [number, setNumber] = useState(() => {
     return JSON.parse(localStorage.getItem('number')) ?? '';
   });
+
+
+
+   const dispatch = useDispatch();
+  
+  
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -30,10 +40,14 @@ export default function Phonebook({onSubmit}) {
     }
   };
 
+ 
+
+
   const handleSubmit = e => {
     const id = shortid.generate();
     e.preventDefault();
-    onSubmit({ name: name, number: number, id: id });
+    // onSubmit({ name: name, number: number, id: id });
+   dispatch(addContact({id: id, name: name, number: number}));
     reset();
   };
 
