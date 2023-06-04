@@ -4,25 +4,20 @@ import css from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { delContact } from 'redux/slice';
 
-
-
 const getContacts = (items, filter) =>
   items.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-
 const ContactsList = () => {
-
-const items = useSelector(state => state.contacts.items);
-const filter = useSelector(state => state.contacts.filter);
+  const items = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.filter);
   const contacts = getContacts(items, filter);
   const dispatch = useDispatch();
 
-
-    const ondeleteContact = id => {
-      dispatch(delContact(id));
-    };
+  const ondeleteContact = id => {
+    dispatch(delContact(id));
+  };
 
   return (
     <ul className={css.List}>
