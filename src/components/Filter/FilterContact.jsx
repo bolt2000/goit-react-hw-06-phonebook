@@ -1,22 +1,25 @@
 import css from './FilterContact.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from 'redux/slice';
+import { getContacts, getFilter } from 'redux/selectors';
 
 
 
-
-
-
-// const Filter = ({ value, onChange }) => {
 
 
 const Filter = () => {
   const dispatch = useDispatch();
   const value = useSelector(state => state.contacts.filter);
 
-  const onChange = element => {
-    dispatch(changeFilter(element.currentTarget.value));
-  };
+
+   const filterContact = evt => {
+     dispatch(changeFilter(evt.currentTarget.value));
+   };
+
+
+  // const onChange = element => {
+  //   dispatch(changeFilter(element.currentTarget.value));
+  // };
 
   return (
     <label className={css.Label}>
@@ -25,7 +28,7 @@ const Filter = () => {
         className={css.Input}
         type="text"
         value={value}
-        onChange={onChange}
+        onChange={filterContact}
         name="filter"
       />
     </label>

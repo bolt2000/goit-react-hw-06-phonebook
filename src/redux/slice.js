@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { nanoid } from 'nanoid';
-// import { toast } from 'react-toastify';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 

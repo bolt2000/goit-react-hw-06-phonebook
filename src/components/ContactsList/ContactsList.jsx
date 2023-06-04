@@ -6,16 +6,6 @@ import { delContact } from 'redux/slice';
 
 
 
-
-// const dispatch = useDispatch();
-
-
-  // const normalizeFilter = filter.toLowerCase();
-
-  // const visibleFilter = contacts.filter(contacts =>
-  //   contacts.name.toLowerCase().includes(normalizeFilter)
-  // );
-
 const getContacts = (items, filter) =>
   items.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -63,7 +53,6 @@ ContactsList.propTypes = {
       id: PropTypes.string.isRequired,
     })
   ),
-  // onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactsList;

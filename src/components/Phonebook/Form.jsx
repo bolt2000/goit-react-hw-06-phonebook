@@ -1,14 +1,14 @@
-// import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import shortid from 'shortid';
 import { useState } from 'react';
 import { addContact } from 'redux/slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
 
 
-
-export default function Phonebook({onSubmit}) {
+export default function Phonebook() {
   const [name, setName] = useState(() => {
     return JSON.parse(localStorage.getItem('name')) ?? '';
   });
@@ -18,7 +18,7 @@ export default function Phonebook({onSubmit}) {
   });
 
 
-
+const contacts = useSelector(getContacts);
    const dispatch = useDispatch();
   
   
@@ -40,13 +40,22 @@ export default function Phonebook({onSubmit}) {
     }
   };
 
- 
+  //  const formSubmithandler = data => {
+  //    if (
+  //      !contacts.find(
+  //        contact => data.name.toLocaleLowerCase() === contact.name.toLowerCase()
+  //      )
+  //    ) {
+  //      dispatch(prevState => (prevState ? [...prevState, data] : [data]));
+  //    } else {
+  //      alert(`${data.name} is already in contacts.`);
+  //    }
+  //  };
 
 
   const handleSubmit = e => {
     const id = shortid.generate();
     e.preventDefault();
-    // onSubmit({ name: name, number: number, id: id });
    dispatch(addContact({id: id, name: name, number: number}));
     reset();
   };
@@ -57,7 +66,9 @@ export default function Phonebook({onSubmit}) {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
+    <form className={css.form}
+      onSubmit={handleSubmit}
+    >
       <label className={css.label}>
         Name
         <input
