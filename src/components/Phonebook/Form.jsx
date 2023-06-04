@@ -5,7 +5,6 @@ import shortid from 'shortid';
 import { useState } from 'react';
 import { addContact } from 'redux/slice';
 import { useDispatch } from 'react-redux';
-// import { getContacts } from 'redux/selectors';
 
 export default function Phonebook() {
   const [name, setName] = useState(() => {
@@ -16,7 +15,6 @@ export default function Phonebook() {
     return JSON.parse(localStorage.getItem('number')) ?? '';
   });
 
-  // const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -35,18 +33,6 @@ export default function Phonebook() {
         return;
     }
   };
-
-  //  const formSubmithandler = data => {
-  //    if (
-  //      !contacts.find(
-  //        contact => data.name.toLocaleLowerCase() === contact.name.toLowerCase()
-  //      )
-  //    ) {
-  //      dispatch(prevState => (prevState ? [...prevState, data] : [data]));
-  //    } else {
-  //      alert(`${data.name} is already in contacts.`);
-  //    }
-  //  };
 
   const handleSubmit = e => {
     const id = shortid.generate();
